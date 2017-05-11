@@ -9,7 +9,10 @@ class Point(object):
 		self._y = y
 
 	def __eq__(self, other):
-		return self.x() == other.x() and self.y() == other.y()
+		return self._x == other.x() and self._y == other.y()
+
+	def __hash__(self):
+		return hash((self._x, self._y))
 
 	def x(self):
 		return self._x

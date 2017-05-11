@@ -1,7 +1,7 @@
 # coding: utf-8
 from unittest import TestCase
 
-from Point.point import Point
+from Geometry.point import Point
 
 __author__ = 'Andres'
 
