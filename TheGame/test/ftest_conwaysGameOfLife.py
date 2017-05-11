@@ -30,4 +30,14 @@ class TestConwaysGameOfLife(TestCase):
 		self.assertTrue(aGameOfLife.isAlive(aPointWithTwoNeighborsInTheSquare))
 		self.assertTrue(aGameOfLife.isAlive(aPointWithThreeNeighborsInTheSquare))
 
+	def testACellWithMoreThanThreeLiveNeighboursDies(self):
+		aPoint = Point(1, 1)
+		anSquareOfPoints = [aPoint] + aPoint.eightNeighbors()
+		aPointWithEightNeighborsInTheSquare = aPoint
+
+
+		aGameOfLife = ConwaysGameOfLife(anArrayOfPointsIndicatingAliveCells=anSquareOfPoints)
+		aGameOfLife.nextGeneration()
+
+		self.assertFalse(aGameOfLife.isAlive(aPointWithEightNeighborsInTheSquare))
 
