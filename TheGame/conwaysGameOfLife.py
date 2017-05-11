@@ -1,5 +1,5 @@
 # coding: utf-8
-from Point.point import Point
+from Geometry.point import Point
 
 __author__ = 'Andres'
 
@@ -22,6 +22,20 @@ class ConwaysGameOfLife(object):
 					neighborsCount += 1
 			if 2 <= neighborsCount <= 3:
 				aliveCells.append(cell)
+
+		deadCellsWithNeighbors = {}
+		for cell in self._aliveCells:
+			for neighbor in cell.eightNeighbors():
+				if neighbor not in self._aliveCells:
+					if neighbor in deadCellsWithNeighbors:
+						deadCellsWithNeighbors[neighbor] += 1
+					else:
+						deadCellsWithNeighbors[neighbor] = 1
+
+		for deadCell in deadCellsWithNeighbors:
+			print deadCell.x(), deadCell.y()
+			if deadCellsWithNeighbors[deadCell] == 3:
+				aliveCells.append(deadCell)
 
 		self._aliveCells = aliveCells
 

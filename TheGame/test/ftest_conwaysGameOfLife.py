@@ -1,7 +1,7 @@
 # coding: utf-8
 from unittest import TestCase
 
-from Point.point import Point
+from Geometry.point import Point
 from TheGame.conwaysGameOfLife import ConwaysGameOfLife
 
 __author__ = 'Andres'
@@ -35,9 +35,19 @@ class TestConwaysGameOfLife(TestCase):
 		anSquareOfPoints = [aPoint] + aPoint.eightNeighbors()
 		aPointWithEightNeighborsInTheSquare = aPoint
 
-
 		aGameOfLife = ConwaysGameOfLife(anArrayOfPointsIndicatingAliveCells=anSquareOfPoints)
 		aGameOfLife.nextGeneration()
 
 		self.assertFalse(aGameOfLife.isAlive(aPointWithEightNeighborsInTheSquare))
+
+	def testADeadCellWithThreeAliveNeighboursBecomesAlive(self):
+		aPoint = Point(1, 1)
+		anSquareOfPoints = [aPoint] + aPoint.eightNeighbors()
+
+		ADeadPointWithThreeNeighborsInTheSquare = Point(1, 3)
+
+		aGameOfLife = ConwaysGameOfLife(anArrayOfPointsIndicatingAliveCells=anSquareOfPoints)
+		aGameOfLife.nextGeneration()
+
+		self.assertTrue(aGameOfLife.isAlive(ADeadPointWithThreeNeighborsInTheSquare))
 
