@@ -1,9 +1,15 @@
 # coding: utf-8
+from Point.point import Point
+
 __author__ = 'Andres'
 
 
 class ConwaysGameOfLife(object):
 	def __init__(self, anArrayOfPointsIndicatingAliveCells):
+		assert isinstance(anArrayOfPointsIndicatingAliveCells, list)
+		for point in anArrayOfPointsIndicatingAliveCells:
+			assert isinstance(point, Point)
+
 		self._aliveCells = anArrayOfPointsIndicatingAliveCells
 
 	def nextGeneration(self):
@@ -20,4 +26,5 @@ class ConwaysGameOfLife(object):
 		self._aliveCells = aliveCells
 
 	def isAlive(self, aPoint):
+		assert isinstance(aPoint, Point)
 		return aPoint in self._aliveCells
