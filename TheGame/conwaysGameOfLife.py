@@ -13,6 +13,10 @@ class ConwaysGameOfLife(object):
 		self._aliveCells = anArrayOfPointsIndicatingAliveCells
 
 	def nextGeneration(self):
+		self._aliveCells = self._aliveCellsInNextGenerationFromSecondRule() + \
+						   self._aliveCellsInNextGenerationFromFourthRule()
+
+	def _aliveCellsInNextGenerationFromSecondRule(self):
 		aliveCells = []
 		for cell in self._aliveCells:
 			neighborsCount = 0
@@ -23,6 +27,10 @@ class ConwaysGameOfLife(object):
 			if 2 <= neighborsCount <= 3:
 				aliveCells.append(cell)
 
+		return aliveCells
+
+	def _aliveCellsInNextGenerationFromFourthRule(self):
+		aliveCells = []
 		deadCellsWithNeighbors = {}
 		for cell in self._aliveCells:
 			for neighbor in cell.eightNeighbors():
@@ -33,11 +41,9 @@ class ConwaysGameOfLife(object):
 						deadCellsWithNeighbors[neighbor] = 1
 
 		for deadCell in deadCellsWithNeighbors:
-			print deadCell.x(), deadCell.y()
 			if deadCellsWithNeighbors[deadCell] == 3:
 				aliveCells.append(deadCell)
-
-		self._aliveCells = aliveCells
+		return aliveCells
 
 	def isAlive(self, aPoint):
 		assert isinstance(aPoint, Point)
