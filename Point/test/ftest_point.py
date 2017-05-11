@@ -13,3 +13,11 @@ class testPoint(TestCase):
 		neighbors = aPoint.eightNeighbors()
 
 		self.assertTrue(len(neighbors) == 8)
+
+	def testAPointsEightNeighborsAreAlsoPoints(self):
+		aPoint = Point(2, 3)
+
+		neighbors = aPoint.eightNeighbors()
+
+		for neighbor in neighbors:
+			self.assertIsInstance(neighbor, Point)
