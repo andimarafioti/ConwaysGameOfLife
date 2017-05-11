@@ -1,10 +1,19 @@
 # coding: utf-8
-from PySide.QtCore import QPoint
 
 __author__ = 'Andres'
 
 
-class Point(QPoint):
+class Point(object):
+	def __init__(self, x, y):
+		self._x = x
+		self._y = y
+
+	def x(self):
+		return self._x
+
+	def y(self):
+		return self._y
+
 	def eightNeighbors(self):
 		leftNeighbors = [Point(self.x()-1, y) for y in range(self.y()-1, self.y()+2)]
 		rightNeighbors = [Point(self.x()+1, y) for y in range(self.y()-1, self.y()+2)]
