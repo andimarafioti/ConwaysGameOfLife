@@ -13,10 +13,10 @@ class ConwaysGameOfLife(object):
 		self._aliveCells = anArrayOfPointsIndicatingAliveCells
 
 	def nextGeneration(self):
-		self._aliveCells = self._aliveCellsInNextGenerationFromSecondRule() + \
-						   self._aliveCellsInNextGenerationFromFourthRule()
+		self._aliveCells = self._aliveCellsWithTwoOrThreeNeighbors() + \
+						   self._deadCellsWithThreeNeighbors()
 
-	def _aliveCellsInNextGenerationFromSecondRule(self):
+	def _aliveCellsWithTwoOrThreeNeighbors(self):
 		aliveCells = []
 		for cell in self._aliveCells:
 			neighborsCount = 0
@@ -29,7 +29,7 @@ class ConwaysGameOfLife(object):
 
 		return aliveCells
 
-	def _aliveCellsInNextGenerationFromFourthRule(self):
+	def _deadCellsWithThreeNeighbors(self):
 		aliveCells = []
 		deadCellsWithNeighbors = {}
 		for cell in self._aliveCells:
