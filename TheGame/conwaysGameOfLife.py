@@ -16,6 +16,9 @@ class ConwaysGameOfLife(object):
 		self._aliveCells = self._aliveCellsWithTwoOrThreeNeighbors() + \
 						   self._deadCellsWithThreeNeighbors()
 
+	def aliveCells(self):
+		return self._aliveCells
+
 	def _aliveCellsWithTwoOrThreeNeighbors(self):
 		aliveCells = []
 		for cell in self._aliveCells:
